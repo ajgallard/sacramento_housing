@@ -1,4 +1,6 @@
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 df_sac = pd.read_csv(r'C:\Users\ajgal\Documents\GitHub\Sacramento_Housing\sac_scrapy\redfin_sac.csv')
 df_arden = pd.read_csv(r'C:\Users\ajgal\Documents\GitHub\Sacramento_Housing\sac_scrapy\redfin_arden.csv')
@@ -47,7 +49,28 @@ df_total.info()
 df_total['brokerage'] = df_total['brokerage'].fillna('None')
 df_total.info()
 
-# export dataframe in csv format to Github folder
-df_total.info()
-df_csv_data = df_total.to_csv('redfin_prep.csv')
-print('\nCSV String: \n', 'redfin_prep.csv')
+# histogram plot for price
+sns.histplot(df_total['price'], bins=20)
+plt.show()
+
+# remove outliers
+upper_limit = df_total['price'].quantile(0.95)
+lower_limit = df_total['price'].quantile(0.05)
+df_edit = df_total[(df_total['price'] > lower_limit) & (df_total['price'] < upper_limit)]
+
+# histogram plot after removing outliers
+sns.histplot(df_edit['price'], bins=20)
+plt.show()
+
+# TODO: remove lines without beds or baths
+index_zero_beds = df_edit[df_edit['beds'] < 1 ].index
+df_edit.drop(index_zero_beds,inplace=True)
+
+index_zero_baths = df_edit[df_edit['baths'] < 1 ].index
+df_edit.drop(index_zero_baths,inplace=True)
+
+# TODO: export file to csv without index
+df_final = df_edit
+df_final.info()
+
+df_final.to_csv('redfin_prep.csv',index=False)
