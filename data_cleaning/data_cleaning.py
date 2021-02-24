@@ -62,14 +62,14 @@ df_edit = df_total[(df_total['price'] > lower_limit) & (df_total['price'] < uppe
 sns.histplot(df_edit['price'], bins=20)
 plt.show()
 
-# TODO: remove lines without beds or baths
+# remove lines without beds or baths
 index_zero_beds = df_edit[df_edit['beds'] < 1 ].index
 df_edit.drop(index_zero_beds,inplace=True)
 
 index_zero_baths = df_edit[df_edit['baths'] < 1 ].index
 df_edit.drop(index_zero_baths,inplace=True)
 
-# TODO: export file to csv without index
+# export file to csv without index
 df_final = df_edit
 df_final.info()
 
