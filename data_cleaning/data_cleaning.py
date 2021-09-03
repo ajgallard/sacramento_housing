@@ -2,11 +2,11 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-df_sac = pd.read_csv(r'C:\Users\ajgal\Documents\GitHub\Sacramento_Housing\sac_scrapy\redfin_sac.csv')
-df_arden = pd.read_csv(r'C:\Users\ajgal\Documents\GitHub\Sacramento_Housing\sac_scrapy\redfin_arden.csv')
-df_citrus = pd.read_csv(r'C:\Users\ajgal\Documents\GitHub\Sacramento_Housing\sac_scrapy\redfin_citrus.csv')
-df_rancho = pd.read_csv(r'C:\Users\ajgal\Documents\GitHub\Sacramento_Housing\sac_scrapy\redfin_rancho.csv')
-df_elk = pd.read_csv(r'C:\Users\ajgal\Documents\GitHub\Sacramento_Housing\sac_scrapy\redfin_elk.csv')
+df_sac = pd.read_csv(r'C:\Users\ajgal\Documents\GitHub\Sacramento_Housing\data\sac_scrapy\redfin_sac.csv')
+df_arden = pd.read_csv(r'C:\Users\ajgal\Documents\GitHub\Sacramento_Housing\data\sac_scrapy\redfin_arden.csv')
+df_citrus = pd.read_csv(r'C:\Users\ajgal\Documents\GitHub\Sacramento_Housing\data\sac_scrapy\redfin_citrus.csv')
+df_rancho = pd.read_csv(r'C:\Users\ajgal\Documents\GitHub\Sacramento_Housing\data\sac_scrapy\redfin_rancho.csv')
+df_elk = pd.read_csv(r'C:\Users\ajgal\Documents\GitHub\Sacramento_Housing\data\sac_scrapy\redfin_elk.csv')
 
 # combine all data collected into a single dataframe
 df_total = pd.concat([df_sac, df_arden, df_citrus, df_rancho, df_elk], ignore_index=True)
